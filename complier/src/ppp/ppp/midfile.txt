@@ -1,0 +1,128 @@
+VAR       	num       	          	          	0         
+VAR       	c         	          	          	0         
+_get:     	          	          	          	1         
+BeginFunc 	4         	          	          	1         
+VAR       	c         	          	          	1         
+$t0       	a         	+         	b         	1         
+c         	$t0       	          	          	1         
+IFZ       	0         	GOTO      	$L0       	1         
+$t1       	a         	+         	a         	2         
+$t2       	$t1       	+         	a         	2         
+c         	$t2       	          	          	2         
+$t3       	a         	+         	97        	2         
+b         	$t3       	          	          	2         
+GOTO      	$L1       	          	          	2         
+$L0:      	          	          	          	4         
+b         	99        	          	          	4         
+$L1:      	          	          	          	5         
+$t4       	1         	<         	2         	5         
+IFZ       	$t4       	GOTO      	$L2       	5         
+$t5       	a         	+         	a         	6         
+$t6       	$t5       	+         	a         	6         
+c         	$t6       	          	          	6         
+$t7       	a         	+         	97        	6         
+b         	$t7       	          	          	6         
+GOTO      	$L3       	          	          	6         
+$L2:      	          	          	          	8         
+b         	99        	          	          	8         
+$L3:      	          	          	          	9         
+Printf    	b         	          	          	9         
+$t8       	a         	+         	b         	9         
+Return    	$t8       	          	          	9         
+EndFunc   	          	          	          	9         
+_main:    	          	          	          	10        
+BeginFunc 	68        	          	          	10        
+VAR       	str[10]   	          	          	10        
+VAR       	x         	          	          	10        
+VAR       	d         	          	          	10        
+VAR       	e[4]      	          	          	10        
+VAR       	f         	          	          	10        
+d         	101       	          	          	10        
+x         	9         	          	          	10        
+$t9       	0         	*         	4         	10        
+$t10      	$t9       	>=        	0         	10        
+IFZ       	$t10      	GOTO      	_arrerror 	10        
+$t11      	40        	          	          	11        
+$t12      	$t11      	>         	$t9       	11        
+IFZ       	$t12      	GOTO      	_arrerror 	11        
+$t13      	str       	+         	$t9       	12        
+*($t13)   	49        	          	          	12        
+$t14      	1         	*         	4         	12        
+$t15      	$t14      	>=        	0         	12        
+IFZ       	$t15      	GOTO      	_arrerror 	12        
+$t16      	40        	          	          	13        
+$t17      	$t16      	>         	$t14      	13        
+IFZ       	$t17      	GOTO      	_arrerror 	13        
+$t18      	str       	+         	$t14      	14        
+*($t18)   	50        	          	          	14        
+$t19      	2         	*         	4         	14        
+$t20      	$t19      	>=        	0         	14        
+IFZ       	$t20      	GOTO      	_arrerror 	14        
+$t21      	40        	          	          	15        
+$t22      	$t21      	>         	$t19      	15        
+IFZ       	$t22      	GOTO      	_arrerror 	15        
+$t23      	str       	+         	$t19      	16        
+$t24      	0         	*         	4         	16        
+$t25      	$t24      	>=        	0         	16        
+IFZ       	$t25      	GOTO      	_arrerror 	16        
+$t26      	40        	          	          	17        
+$t27      	$t26      	>         	$t24      	17        
+IFZ       	$t27      	GOTO      	_arrerror 	17        
+$t28      	str       	+         	$t24      	18        
+$t29      	*($t28)   	          	          	18        
+$t30      	1         	*         	4         	18        
+$t31      	$t30      	>=        	0         	18        
+IFZ       	$t31      	GOTO      	_arrerror 	18        
+$t32      	40        	          	          	19        
+$t33      	$t32      	>         	$t30      	19        
+IFZ       	$t33      	GOTO      	_arrerror 	19        
+$t34      	str       	+         	$t30      	20        
+$t35      	*($t34)   	          	          	20        
+$t36      	$t29      	+         	$t35      	20        
+*($t23)   	$t36      	          	          	20        
+$t37      	2         	*         	4         	20        
+$t38      	$t37      	>=        	0         	20        
+IFZ       	$t38      	GOTO      	_arrerror 	20        
+$t39      	40        	          	          	21        
+$t40      	$t39      	>         	$t37      	21        
+IFZ       	$t40      	GOTO      	_arrerror 	21        
+$t41      	str       	+         	$t37      	22        
+$t42      	*($t41)   	          	          	22        
+Printf    	$t42      	          	          	22        
+Printf    	f         	          	          	22        
+$t43      	x         	+         	x         	22        
+$t44      	0         	*         	4         	22        
+$t45      	$t44      	>=        	0         	22        
+IFZ       	$t45      	GOTO      	_arrerror 	22        
+$t46      	40        	          	          	23        
+$t47      	$t46      	>         	$t44      	23        
+IFZ       	$t47      	GOTO      	_arrerror 	23        
+$t48      	str       	+         	$t44      	24        
+$t49      	*($t48)   	          	          	24        
+$t50      	x         	*         	$t49      	24        
+$t51      	$t43      	>         	$t50      	24        
+IFZ       	$t51      	GOTO      	$L4       	24        
+$t52      	d         	+         	x         	25        
+d         	$t52      	          	          	25        
+GOTO      	$L5       	          	          	25        
+$L4:      	          	          	          	27        
+$t53      	d         	-         	x         	27        
+d         	$t53      	          	          	27        
+$L5:      	          	          	          	28        
+Printf    	d         	          	          	28        
+$t54      	1         	*         	4         	28        
+num       	$t54      	          	          	28        
+$t55      	99        	*         	d         	28        
+$t56      	99        	*         	$t55      	28        
+$t57      	$t56      	/         	x         	28        
+$t58      	1         	+         	$t57      	28        
+c         	$t58      	          	          	28        
+Printf    	c         	          	          	28        
+Printf    	100       	          	          	28        
+Printf    	$str0     	          	          	28        
+Printf    	99        	          	          	28        
+_exit:    	          	          	          	29        
+EndProgram	          	          	          	29        
+_arrerror:	          	          	          	30        
+Printf    	$str1     	          	          	30        
+GOTO      	_exit     	          	          	30        

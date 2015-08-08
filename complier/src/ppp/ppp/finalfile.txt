@@ -1,0 +1,345 @@
+.data
+num: .space 4
+c: .space 4
+$str0: .asciiz "hello\n" 
+$str1: .asciiz "array overflow" 
+.text 
+	j _main 
+	# _get:    
+_get: 
+	# BeginFunc 4   
+	subu $sp, $sp, 8	# decrement sp to make space to save ra,fp
+	sw $fp, 8($sp)	# save fp
+	sw $ra, 4($sp)	# save ra
+	addiu $fp, $sp, 8	# set up new fp
+	subu $sp, $sp, 4	# decrement sp to make space for locals/temps
+	# VAR c   
+	# $t0 a + b 
+	lw $t0, 8($fp) 
+	lw $t1, 4($fp) 
+	add $t2, $t1, $t0 
+	# c $t0   
+	sw $t2, -8($fp) 
+	# IFZ 0 GOTO $L0 
+	j $L0 
+	# $t1 a + a 
+	lw $t0, 4($fp) 
+	lw $t1, 4($fp) 
+	add $t2, $t1, $t0 
+	# $t2 $t1 + a 
+	lw $t0, 4($fp) 
+	add $t1, $t2, $t0 
+	# c $t2   
+	sw $t1, -8($fp) 
+	# $t3 a + 97 
+	li $t0, 97 
+	lw $t1, 4($fp) 
+	add $t2, $t1, $t0 
+	# b $t3   
+	sw $t2, 8($fp) 
+	# GOTO $L1   
+	j $L1 
+	# $L0:    
+$L0: 
+	# b 99   
+	li $t0, 99 
+	sw $t0, 8($fp) 
+	# $L1:    
+$L1: 
+	# $t4 1 < 2 
+	li $t1, 1
+	li $t2, 2
+	sub $t0, $t1, $t2
+	# IFZ $t4 GOTO $L2 
+	bgez, $t0, $L2 
+	# $t5 a + a 
+	lw $t0, 4($fp) 
+	lw $t1, 4($fp) 
+	add $t2, $t1, $t0 
+	# $t6 $t5 + a 
+	lw $t0, 4($fp) 
+	add $t1, $t2, $t0 
+	# c $t6   
+	sw $t1, -8($fp) 
+	# $t7 a + 97 
+	li $t0, 97 
+	lw $t1, 4($fp) 
+	add $t2, $t1, $t0 
+	# b $t7   
+	sw $t2, 8($fp) 
+	# GOTO $L3   
+	j $L3 
+	# $L2:    
+$L2: 
+	# b 99   
+	li $t0, 99 
+	sw $t0, 8($fp) 
+	# $L3:    
+$L3: 
+	# Printf b   
+	lw $t0, 8($fp) 
+	move $a0, $t0 
+	li $v0, 1 	# print an integer
+	syscall 
+	# $t8 a + b 
+	lw $t0, 8($fp) 
+	lw $t1, 4($fp) 
+	add $t2, $t1, $t0 
+	# Return $t8   
+	move $v0, $t2 
+	# EndFunc    
+	move $sp, $fp	# pop callee frame off stack
+	lw $ra, -4($fp)	# restore saved ra
+	lw $fp, 0($fp)	# restore saved fp
+	jr $ra	# return from function
+	# _main:    
+_main: 
+	# BeginFunc 68   
+	subu $sp, $sp, 8	# decrement sp to make space to save ra,fp
+	sw $fp, 8($sp)	# save fp
+	sw $ra, 4($sp)	# save ra
+	addiu $fp, $sp, 8	# set up new fp
+	subu $sp, $sp, 68	# decrement sp to make space for locals/temps
+	# VAR str[10]   
+	# VAR x   
+	# VAR d   
+	# VAR e[4]   
+	# VAR f   
+	# d 101   
+	li $t0, 101 
+	sw $t0, -52($fp) 
+	# x 9   
+	li $t0, 9 
+	sw $t0, -48($fp) 
+	# $t9 0 * 4 
+	li $t0, 0
+	# $t10 $t9 >= 0 
+	li $t3, 0
+	sub $t1, $t0, $t3
+	# IFZ $t10 GOTO _arrerror 
+	bltz, $t1, _arrerror 
+	# $t11 40   
+	li $t1, 40 
+	# $t12 $t11 > $t9 
+	sub $t3, $t1, $t0
+	# IFZ $t12 GOTO _arrerror 
+	blez, $t3, _arrerror 
+	# $t13 str + $t9 
+	li $t3, -8 
+	add $t3, $t3, $fp 
+	sub $s0, $t3, $t0 
+	# *($t13) 49   
+	li $t0, 49 
+	sw $t0, 0($s0)
+	# $t14 1 * 4 
+	li $t0, 4
+	# $t15 $t14 >= 0 
+	li $t4, 0
+	sub $t3, $t0, $t4
+	# IFZ $t15 GOTO _arrerror 
+	bltz, $t3, _arrerror 
+	# $t16 40   
+	li $t3, 40 
+	# $t17 $t16 > $t14 
+	sub $t4, $t3, $t0
+	# IFZ $t17 GOTO _arrerror 
+	blez, $t4, _arrerror 
+	# $t18 str + $t14 
+	li $t4, -8 
+	add $t4, $t4, $fp 
+	sub $s1, $t4, $t0 
+	# *($t18) 50   
+	li $t0, 50 
+	sw $t0, 0($s1)
+	# $t19 2 * 4 
+	li $t0, 8
+	# $t20 $t19 >= 0 
+	li $t5, 0
+	sub $t4, $t0, $t5
+	# IFZ $t20 GOTO _arrerror 
+	bltz, $t4, _arrerror 
+	# $t21 40   
+	li $t4, 40 
+	# $t22 $t21 > $t19 
+	sub $t5, $t4, $t0
+	# IFZ $t22 GOTO _arrerror 
+	blez, $t5, _arrerror 
+	# $t23 str + $t19 
+	li $t5, -8 
+	add $t5, $t5, $fp 
+	sub $s2, $t5, $t0 
+	# $t24 0 * 4 
+	li $t0, 0
+	# $t25 $t24 >= 0 
+	li $t6, 0
+	sub $t5, $t0, $t6
+	# IFZ $t25 GOTO _arrerror 
+	bltz, $t5, _arrerror 
+	# $t26 40   
+	li $t5, 40 
+	# $t27 $t26 > $t24 
+	sub $t6, $t5, $t0
+	# IFZ $t27 GOTO _arrerror 
+	blez, $t6, _arrerror 
+	# $t28 str + $t24 
+	li $t6, -8 
+	add $t6, $t6, $fp 
+	sub $s3, $t6, $t0 
+	# $t29 *($t28)   
+	lw $t0, 0($s3)
+	# $t30 1 * 4 
+	li $t6, 4
+	# $t31 $t30 >= 0 
+	li $t8, 0
+	sub $t7, $t6, $t8
+	# IFZ $t31 GOTO _arrerror 
+	bltz, $t7, _arrerror 
+	# $t32 40   
+	li $t7, 40 
+	# $t33 $t32 > $t30 
+	sub $t8, $t7, $t6
+	# IFZ $t33 GOTO _arrerror 
+	blez, $t8, _arrerror 
+	# $t34 str + $t30 
+	li $t8, -8 
+	add $t8, $t8, $fp 
+	sub $s4, $t8, $t6 
+	# $t35 *($t34)   
+	lw $t6, 0($s4)
+	# $t36 $t29 + $t35 
+	add $t8, $t0, $t6 
+	# *($t23) $t36   
+	sw $t8, 0($s2)
+	# $t37 2 * 4 
+	li $t0, 8
+	# $t38 $t37 >= 0 
+	li $t8, 0
+	sub $t6, $t0, $t8
+	# IFZ $t38 GOTO _arrerror 
+	bltz, $t6, _arrerror 
+	# $t39 40   
+	li $t6, 40 
+	# $t40 $t39 > $t37 
+	sub $t8, $t6, $t0
+	# IFZ $t40 GOTO _arrerror 
+	blez, $t8, _arrerror 
+	# $t41 str + $t37 
+	li $t8, -8 
+	add $t8, $t8, $fp 
+	sub $s5, $t8, $t0 
+	# $t42 *($t41)   
+	lw $t0, 0($s5)
+	# Printf $t42   
+	move $a0, $t0 
+	li $v0, 11 	# print a char 
+	syscall 
+	# Printf f   
+	lw $t0, -72($fp) 
+	move $a0, $t0 
+	li $v0, 1 	# print an integer
+	syscall 
+	# $t43 x + x 
+	lw $t0, -48($fp) 
+	lw $t8, -48($fp) 
+	add $t9, $t8, $t0 
+	# $t44 0 * 4 
+	li $t0, 0
+	# $t45 $t44 >= 0 
+	li $t-1, 0
+	sub $t8, $t0, $t-1
+	# IFZ $t45 GOTO _arrerror 
+	bltz, $t8, _arrerror 
+	# $t46 40   
+	li $t8, 40 
+	# $t47 $t46 > $t44 
+	sub $t-1, $t8, $t0
+	# IFZ $t47 GOTO _arrerror 
+	blez, $t-1, _arrerror 
+	# $t48 str + $t44 
+	li $t-1, -8 
+	add $t-1, $t-1, $fp 
+	sub $s6, $t-1, $t0 
+	# $t49 *($t48)   
+	lw $t0, 0($s6)
+	# $t50 x * $t49 
+	lw $t-1, -48($fp) 
+	mult $t-1, $t0 
+	mflo $t-1
+	# $t51 $t43 > $t50 
+	sub $t0, $t9, $t-1
+	# IFZ $t51 GOTO $L4 
+	blez, $t0, $L4 
+	# $t52 d + x 
+	lw $t0, -48($fp) 
+	lw $t9, -52($fp) 
+	add $t-1, $t9, $t0 
+	# d $t52   
+	sw $t-1, -52($fp) 
+	# GOTO $L5   
+	j $L5 
+	# $L4:    
+$L4: 
+	# $t53 d - x 
+	lw $t9, -52($fp) 
+	lw $t-1, -48($fp)
+	sub $t0, $t9, $t-1
+	# d $t53   
+	sw $t0, -52($fp) 
+	# $L5:    
+$L5: 
+	# Printf d   
+	lw $t9, -52($fp) 
+	move $a0, $t9 
+	li $v0, 11 	# print a char
+	syscall 
+	# $t54 1 * 4 
+	li $t9, 4
+	# num $t54   
+	sw $t9, num 
+	# $t55 99 * d 
+	li $t-1, 99 
+	lw $t-1, -52($fp)
+	mult $t-1, $t-1 
+	mflo $t9
+	# $t56 99 * $t55 
+	li $t-1, 99 
+	mult $t-1, $t9 
+	mflo $t-1
+	# $t57 $t56 / x 
+	lw $t-1, -48($fp)
+	div $t-1, $t-1 
+	mflo $t9
+	# $t58 1 + $t57 
+	li $t-1, 1 
+	add $t-1, $t-1, $t9 
+	# c $t58   
+	sw $t-1, c 
+	# Printf c   
+	lw $a0, c 
+	li $v0, 1 	# print an integer
+	syscall 
+	# Printf 100   
+	li $a0, 100 
+	li $v0, 1	# print an integer 
+	syscall 
+	# Printf $str0   
+	la $a0, $str0 
+	li $v0, 4	# print a string 
+	syscall 
+	# Printf 99   
+	li $a0, 99 
+	li $v0, 1	# print an integer 
+	syscall 
+	# _exit:    
+_exit: 
+	# EndProgram    
+	li $v0, 10 
+	syscall 
+	# _arrerror:    
+_arrerror: 
+	# Printf $str1   
+	la $a0, $str1 
+	li $v0, 4	# print a string 
+	syscall 
+	# GOTO _exit   
+	j _exit 

@@ -1,0 +1,45 @@
+const int a = 1;
+const char b = 'c';
+
+int num;
+int c;
+
+int get(int a,int b){
+	int c;
+	c = a+b;
+	return (a+b);
+}
+
+void main()
+{
+	char str[10];
+	int x;
+	char d;
+	int e[4];
+	int f;
+	d = 'e';
+	x = 9;
+	str[0] = '1';
+	str[1] = '2';
+	str[2] = str[0] + str[1];
+	
+	printf(str[2]);
+	
+	f = get(d+x,str[0]+str[1]);
+
+	printf(f);
+	if ((x+x) > x*str[0])
+		d = d + x;
+	else
+		d = d - x;
+	
+	printf(d);
+
+	num = a * 4;
+	c = a + b * (b * d) / x;
+	printf(c);
+	
+	printf('d');
+	printf("hello\n",b);
+	
+}

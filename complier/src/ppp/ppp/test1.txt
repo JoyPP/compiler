@@ -1,0 +1,57 @@
+const int a = 1, b = -2;
+const char c = 'a';
+
+int d;
+char e;
+char str[10];
+
+void min()
+{
+	int d;
+	char e,f;
+	char h[10];
+	str[2] = str[1] + str[0] + str[3];
+	d = a + b;
+	d = a - c;
+	printf(d);
+	printf(str[2]+str[1]);
+	scanf(d,e,f);
+	switch(1)
+	{
+		case 1:d=+-1;
+		case 2:d=--1+a;
+	}
+	printf(d);
+}
+
+int max(int a,int b)
+{
+	while(a!=1)
+	{
+		if(a>=b)
+			return(a);
+		else	
+			return(b);
+	}
+	return (3);
+}
+
+void main()
+{
+	int b2;
+
+	b2 = 2;
+	e = 'c';
+	str[0]=30;
+	str[1]=31;
+	str[3]=33;
+	str[2] = str[0]+str[1];
+	printf("abc",e);
+	printf(a+b);
+	printf(a);
+	printf(1);
+	printf(str[3]);
+	printf(str[0]+str[1]);
+	printf(max(1,b2));
+	min();
+}
