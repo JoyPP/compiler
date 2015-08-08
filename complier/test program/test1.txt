@@ -1,0 +1,30 @@
+int str[10];
+
+int get(int a,int b){
+	int temp;
+	printf(a);
+	printf(b);
+	temp =a;
+	a = b;
+	b = temp;
+	printf(a);
+	printf(b);
+	return (1);
+}
+
+void main()
+{
+int a,b,c,d;
+scanf(a);
+printf(a);
+	b=2;
+	c=4;
+   	d = get(b,c) + b *(-c);
+   	a = c + b*(-c);
+ 	printf(d);
+	printf(a);
+	str[0] = 2;
+	str[1] = 3;
+	str[2] = str[1] + str[0];
+	printf("str[2] is ",str[2]);
+}

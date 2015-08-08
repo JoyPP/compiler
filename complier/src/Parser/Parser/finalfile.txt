@@ -1,0 +1,266 @@
+.data
+var1: .space 4
+var2: .space 4
+intarray: .space 16
+$str0: .asciiz "function2: " 
+$str1: .asciiz "function1: " 
+$str2: .asciiz "main: " 
+$str3: .asciiz "function3: " 
+$str4: .asciiz "array overflow" 
+.text 
+	j _main 
+	# _function2:    
+_function2: 
+	# BeginFunc 0   
+	subu $sp, $sp, 8	# decrement sp to make space to save ra,fp
+	sw $fp, 8($sp)	# save fp
+	sw $ra, 4($sp)	# save ra
+	addiu $fp, $sp, 8	# set up new fp
+	subu $sp, $sp, 0	# decrement sp to make space for locals/temps
+	# Printf $str0   
+	la $a0, $str0 
+	li $v0, 4	# print a string 
+	syscall 
+	# $t0 -1   
+	li $t0, -1 
+	# Printf $t0   
+	move $a0, $t0 
+	li $v0, 1	# print an integer 
+	syscall 
+	# $t1 9   
+	li $t1, 9 
+	# Printf $t1   
+	move $a0, $t1 
+	li $v0, 1	# print an integer 
+	syscall 
+	# EndFunc    
+	move $sp, $fp	# pop callee frame off stack
+	lw $ra, -4($fp)	# restore saved ra
+	lw $fp, 0($fp)	# restore saved fp
+	jr $ra	# return from function
+	# _function1:    
+_function1: 
+	# BeginFunc 0   
+	subu $sp, $sp, 8	# decrement sp to make space to save ra,fp
+	sw $fp, 8($sp)	# save fp
+	sw $ra, 4($sp)	# save ra
+	addiu $fp, $sp, 8	# set up new fp
+	subu $sp, $sp, 0	# decrement sp to make space for locals/temps
+	# Printf $str1   
+	la $a0, $str1 
+	li $v0, 4	# print a string 
+	syscall 
+	# $t2 97   
+	li $t1, 97 
+	# Printf $t2   
+	move $a0, $t1 
+	li $v0, 11 	# print a char 
+	syscall 
+	# $t3 90   
+	li $t1, 90 
+	# Printf $t3   
+	move $a0, $t1 
+	li $v0, 11 	# print a char 
+	syscall 
+	# LCALL _function2   
+	jal _function2 
+	# PopStack 0   
+	add $sp, $sp, 0	# pop off the stack
+	# EndFunc    
+	move $sp, $fp	# pop callee frame off stack
+	lw $ra, -4($fp)	# restore saved ra
+	lw $fp, 0($fp)	# restore saved fp
+	jr $ra	# return from function
+	# _function3:    
+_function3: 
+	# BeginFunc 0   
+	subu $sp, $sp, 8	# decrement sp to make space to save ra,fp
+	sw $fp, 8($sp)	# save fp
+	sw $ra, 4($sp)	# save ra
+	addiu $fp, $sp, 8	# set up new fp
+	subu $sp, $sp, 0	# decrement sp to make space for locals/temps
+	# $t4 para1 + para2 
+	lw $t1, 8($fp) 
+	lw $t2, 4($fp) 
+	add $t3, $t2, $t1 
+	# Return $t4   
+	move $v0, $t3 
+	move $sp, $fp	# pop callee frame off stack
+	lw $ra, -4($fp)	# restore saved ra
+	lw $fp, 0($fp)	# restore saved fp
+	jr $ra	# return from function
+	# EndFunc    
+	move $sp, $fp	# pop callee frame off stack
+	lw $ra, -4($fp)	# restore saved ra
+	lw $fp, 0($fp)	# restore saved fp
+	jr $ra	# return from function
+	# _main:    
+_main: 
+	# BeginFunc 0   
+	subu $sp, $sp, 8	# decrement sp to make space to save ra,fp
+	sw $fp, 8($sp)	# save fp
+	sw $ra, 4($sp)	# save ra
+	addiu $fp, $sp, 8	# set up new fp
+	subu $sp, $sp, 0	# decrement sp to make space for locals/temps
+	# var1 97   
+	li $t1, 97 
+	sw $t1, var1 
+	# var2 6   
+	li $t1, 6 
+	sw $t1, var2 
+	# $t5 0 * 4 
+	li $t1, 0
+	# $t6 $t5 >= 0 
+	li $t3, 0
+	sub $t2, $t1, $t3
+	# IFZ $t6 GOTO _arrerror 
+	bltz, $t2, _arrerror 
+	# $t7 16   
+	li $t2, 16 
+	# $t8 $t7 > $t5 
+	sub $t3, $t2, $t1
+	# IFZ $t8 GOTO _arrerror 
+	blez, $t3, _arrerror 
+	# $t9 intarray + $t5 
+	la $t2, intarray 
+	add $s0, $t2, $t1 
+	# *($t9) 0   
+	li $t1, 0 
+	sw $t1, 0($s0)
+	# $t10 1 * 4 
+	li $t1, 4
+	# $t11 $t10 >= 0 
+	li $t3, 0
+	sub $t2, $t1, $t3
+	# IFZ $t11 GOTO _arrerror 
+	bltz, $t2, _arrerror 
+	# $t12 16   
+	li $t2, 16 
+	# $t13 $t12 > $t10 
+	sub $t3, $t2, $t1
+	# IFZ $t13 GOTO _arrerror 
+	blez, $t3, _arrerror 
+	# $t14 intarray + $t10 
+	la $t2, intarray 
+	add $s1, $t2, $t1 
+	# *($t14) 1   
+	li $t1, 1 
+	sw $t1, 0($s1)
+	# $t15 2 * 4 
+	li $t1, 8
+	# $t16 $t15 >= 0 
+	li $t3, 0
+	sub $t2, $t1, $t3
+	# IFZ $t16 GOTO _arrerror 
+	bltz, $t2, _arrerror 
+	# $t17 16   
+	li $t2, 16 
+	# $t18 $t17 > $t15 
+	sub $t3, $t2, $t1
+	# IFZ $t18 GOTO _arrerror 
+	blez, $t3, _arrerror 
+	# $t19 intarray + $t15 
+	la $t2, intarray 
+	add $s2, $t2, $t1 
+	# *($t19) 2   
+	li $t1, 2 
+	sw $t1, 0($s2)
+	# $t20 3 * 4 
+	li $t1, 12
+	# $t21 $t20 >= 0 
+	li $t3, 0
+	sub $t2, $t1, $t3
+	# IFZ $t21 GOTO _arrerror 
+	bltz, $t2, _arrerror 
+	# $t22 16   
+	li $t2, 16 
+	# $t23 $t22 > $t20 
+	sub $t3, $t2, $t1
+	# IFZ $t23 GOTO _arrerror 
+	blez, $t3, _arrerror 
+	# $t24 intarray + $t20 
+	la $t2, intarray 
+	add $s3, $t2, $t1 
+	# *($t24) 3   
+	li $t1, 3 
+	sw $t1, 0($s3)
+	# LCALL _function1   
+	jal _function1 
+	# PopStack 0   
+	add $sp, $sp, 0	# pop off the stack
+	# Printf $str2   
+	la $a0, $str2 
+	li $v0, 4	# print a string 
+	syscall 
+	# Printf var1   
+	lw $a0, var1 
+	li $v0, 11 	# print a char
+	syscall 
+	# Printf $str3   
+	la $a0, $str3 
+	li $v0, 4	# print a string 
+	syscall 
+	# $t25 0 * 4 
+	li $t1, 0
+	# $t26 $t25 >= 0 
+	li $t3, 0
+	sub $t2, $t1, $t3
+	# IFZ $t26 GOTO _arrerror 
+	bltz, $t2, _arrerror 
+	# $t27 16   
+	li $t2, 16 
+	# $t28 $t27 > $t25 
+	sub $t3, $t2, $t1
+	# IFZ $t28 GOTO _arrerror 
+	blez, $t3, _arrerror 
+	# $t29 intarray + $t25 
+	la $t2, intarray 
+	add $s4, $t2, $t1 
+	# $t30 *($t29)   
+	lw $t1, 0($s4)
+	# $t31 3 * 4 
+	li $t2, 12
+	# $t32 $t31 >= 0 
+	li $t4, 0
+	sub $t3, $t2, $t4
+	# IFZ $t32 GOTO _arrerror 
+	bltz, $t3, _arrerror 
+	# $t33 16   
+	li $t3, 16 
+	# $t34 $t33 > $t31 
+	sub $t4, $t3, $t2
+	# IFZ $t34 GOTO _arrerror 
+	blez, $t4, _arrerror 
+	# $t35 intarray + $t31 
+	la $t3, intarray 
+	add $s5, $t3, $t2 
+	# $t36 *($t35)   
+	lw $t2, 0($s5)
+	# PushStack $t36   
+	subu $sp, $sp, 4	# decrement sp to make space for temps
+	sw $t2, 4($sp) 
+	# PushStack $t30   
+	subu $sp, $sp, 4	# decrement sp to make space for temps
+	sw $t1, 4($sp) 
+	# $t37 LCALL _function3  
+	jal _function3 
+	move $t1, $v0 
+	# PopStack 8   
+	add $sp, $sp, 8	# pop off the stack
+	# Printf $t37   
+	move $a0, $t1 
+	li $v0, 1	# print an integer 
+	syscall 
+	# _exit:    
+_exit: 
+	# EndProgram    
+	li $v0, 10 
+	syscall 
+	# _arrerror:    
+_arrerror: 
+	# Printf $str4   
+	la $a0, $str4 
+	li $v0, 4	# print a string 
+	syscall 
+	# GOTO _exit   
+	j _exit 

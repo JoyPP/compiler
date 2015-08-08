@@ -1,0 +1,23 @@
+int str[10];
+
+int get(int a,int b){
+	
+	return (a+b);
+}
+
+void foo(){
+	int c ;
+	c = 1+2;
+	printf(c);
+}
+
+void main()
+{
+int a,b,c,d;
+
+
+	b=2;
+	c=4;
+	printf(get(b,c));
+   	foo();
+}

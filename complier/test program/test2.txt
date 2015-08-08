@@ -1,0 +1,23 @@
+void main(){
+	int c;
+	c = a+b;
+	if (0){
+	
+		c = a +a+a;
+		b = a +97;
+	} 
+	else{
+		b = 'c';
+	}
+
+	if (1<2){
+	
+		c = a +a+a;
+		b = a +97;
+	} 
+	else{
+		b = 'c';
+	}
+	printf(b);
+	printf(c);
+}

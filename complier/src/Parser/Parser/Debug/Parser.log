@@ -1,0 +1,41 @@
+﻿生成启动时间为 2015/1/18 14:29:58。
+     1>项目“F:\Program Files\Visual Studio2013\VS2013\MyProject\complier\Parser\Parser\Parser.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>ClCompile:
+         F:\Program Files\Visual Studio2013\VS2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt error.cpp finalcode.cpp gencode.cpp global.cpp lexer.cpp main.cpp midcode.cpp mips.cpp optimization.cpp parser.cpp table.cpp
+         table.cpp
+         parser.cpp
+         optimization.cpp
+     1>f:\program files\visual studio2013\vs2013\myproject\complier\parser\parser\optimization.cpp(36): warning C4101: “result”: 未引用的局部变量
+     1>f:\program files\visual studio2013\vs2013\myproject\complier\parser\parser\optimization.cpp(36): warning C4101: “op”: 未引用的局部变量
+     1>f:\program files\visual studio2013\vs2013\myproject\complier\parser\parser\optimization.cpp(118): warning C4101: “k”: 未引用的局部变量
+     1>f:\program files\visual studio2013\vs2013\myproject\complier\parser\parser\optimization.cpp(291): warning C4101: “tmpname”: 未引用的局部变量
+     1>f:\program files\visual studio2013\vs2013\myproject\complier\parser\parser\optimization.cpp(415): warning C4101: “temp”: 未引用的局部变量
+         mips.cpp
+         midcode.cpp
+         main.cpp
+         lexer.cpp
+         global.cpp
+         gencode.cpp
+         finalcode.cpp
+         error.cpp
+         正在生成代码...
+       Link:
+         F:\Program Files\Visual Studio2013\VS2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\Program Files\Visual Studio2013\VS2013\MyProject\complier\Parser\Debug\Parser.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\Program Files\Visual Studio2013\VS2013\MyProject\complier\Parser\Debug\Parser.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\Program Files\Visual Studio2013\VS2013\MyProject\complier\Parser\Debug\Parser.lib" /MACHINE:X86 Debug\error.obj
+         Debug\finalcode.obj
+         Debug\gencode.obj
+         Debug\global.obj
+         Debug\lexer.obj
+         Debug\main.obj
+         Debug\midcode.obj
+         Debug\mips.obj
+         Debug\optimization.obj
+         Debug\parser.obj
+         Debug\table.obj
+         Parser.vcxproj -> F:\Program Files\Visual Studio2013\VS2013\MyProject\complier\Parser\Debug\Parser.exe
+       BscMake:
+         F:\Program Files\Visual Studio2013\VS2013\VC\bin\bscmake.exe /nologo /o"F:\Program Files\Visual Studio2013\VS2013\MyProject\complier\Parser\Debug\Parser.bsc" /n Debug\error.sbr Debug\finalcode.sbr Debug\gencode.sbr Debug\global.sbr Debug\lexer.sbr Debug\main.sbr Debug\midcode.sbr Debug\mips.sbr Debug\optimization.sbr Debug\parser.sbr Debug\table.sbr
+     1>已完成生成项目“F:\Program Files\Visual Studio2013\VS2013\MyProject\complier\Parser\Parser\Parser.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:14.64

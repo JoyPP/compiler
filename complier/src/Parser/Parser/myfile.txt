@@ -1,0 +1,51 @@
+
+int get(int a ,int b,char c)
+{
+	a = b+c;
+	return (a);
+}
+
+void foo(int a,int b)
+{
+	int c1,c2,c3;
+	b = get(c1,c2,c3);
+	scanf(a,b);
+	printf(a+b);
+}
+
+void main(){
+	int a,b,c,abc,bcd,ccf;
+	a = 0;
+	scanf(abc,bcd,ccf);
+	printf("abc",a+b);
+	b = get(abc,bcd,ccf);
+	while(a<10){
+		if (a>=5)
+			b = b+a;
+		else
+			a = a+1;
+		a = a+2;
+	}
+	b = a*b+a/b;
+	foo(a,b);
+	switch(a+1)
+	{
+		case 1: b = b + c;
+		case 2: a = a + c;
+		case 3: {
+			c = c * 2;
+			b = b + 2;
+			if (a>=5)
+				b = b+a;
+			else
+				a = a+1;
+			a = a+2;
+			if (b>3)
+				c = c -1;
+			else c = c +1;
+			}
+		case 'a': c = 1;
+		case 4: c =2;
+	}
+}
+

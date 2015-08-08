@@ -1,0 +1,19 @@
+int str[4];
+
+int get(int a,int b){
+	
+	return (a+b);
+}
+
+
+void main()
+{
+	int a;
+	a =1;
+	str[0]=1;
+	str[1]=2;
+	str[2]=str[0]+str[1];
+	str[5]=a;
+	printf(str[3]);
+   	
+}

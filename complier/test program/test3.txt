@@ -1,0 +1,15 @@
+const int a=1;
+int b;
+void main(){
+	int c;
+	b = 'c';
+	
+	switch (a){
+		case 1 : c = 2;
+		case 2 : c=3 ;
+	} 
+	
+	printf(b);
+	printf(c);
+	
+}

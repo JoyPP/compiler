@@ -1,0 +1,4 @@
+void main(){
+const int const1 = 0, const2 = -100;
+int change1
+}
